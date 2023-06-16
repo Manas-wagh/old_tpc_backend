@@ -32,16 +32,14 @@ export class jobModel extends Model {
   @ForeignKey(() => seasonModel)
   @Column(sequelize.UUID)
   seasonId: string;
-
-  @BelongsTo(() => seasonModel, 'id')
+  @BelongsTo(() => seasonModel, 'seasonId')
   season: seasonModel;
 
   //
   @ForeignKey(() => companyModel)
   @Column(sequelize.UUID)
   companyId: string;
-
-  @BelongsTo(() => companyModel, 'id')
+  @BelongsTo(() => companyModel, 'companyId')
   company: companyModel;
 
   //
@@ -49,8 +47,7 @@ export class jobModel extends Model {
   @ForeignKey(() => contactModel)
   @Column(sequelize.UUID)
   hrDetails: string;
-
-  @BelongsTo(() => contactModel, 'id')
+  @BelongsTo(() => contactModel, 'hrDetails')
   contact1: contactModel;
 
   //
@@ -59,8 +56,7 @@ export class jobModel extends Model {
   @ForeignKey(() => contactModel)
   @Column(sequelize.UUID)
   assigneeId: string;
-
-  @BelongsTo(() => contactModel, 'id')
+  @BelongsTo(() => contactModel, 'assigneeId')
   contact2: contactModel;
 
   //

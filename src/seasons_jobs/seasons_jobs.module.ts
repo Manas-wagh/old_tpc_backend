@@ -1,9 +1,12 @@
-// import { Module } from '@nestjs/common';
-// import { DatabaseModule } from 'src/db/database.module';
+import { Module } from '@nestjs/common';
+import { databaseModule } from 'src/db/database.module';
+import { seasonsJobsService } from './seasons_jobs.service';
+import { seasonsJobsController } from './seasons_jobs.controller';
+import { ConfigService } from '@nestjs/config';
 
-// @Module({
-//   imports: [DatabaseModule],
-//   controllers: [seasonsJobsController],
-//   providers: [seasonsJobsService],
-// })
-// export class SeasonsJobsModule {}
+@Module({
+  imports: [databaseModule],
+  controllers: [seasonsJobsController],
+  providers: [ConfigService, seasonsJobsService],
+})
+export class SeasonsJobsModule {}

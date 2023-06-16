@@ -9,7 +9,7 @@ import { Logger, Module } from '@nestjs/common';
 import { companiesModule } from './companies/companies.module';
 import { companiesContactsModule } from './companies_contacts/companies_contacts.module';
 import { teamModule } from './team/team.module';
-// import { SeasonsJobsModule } from './seasons_jobs/seasons_jobs.module';
+import { SeasonsJobsModule } from './seasons_jobs/seasons_jobs.module';
 // import { SeasonsJobsEventsModule } from './seasons_jobs_events/seasons_jobs_events.module';
 // import { SeasonsJobsAssignModule } from './seasons_jobs_assign/seasons_jobs_assign.module';
 // import { SeasonsJobsStatusModule } from './seasons_jobs_status/seasons_jobs_status.module';
@@ -26,6 +26,7 @@ import { teamService } from './team/team.service';
     companiesModule,
     companiesContactsModule,
     teamModule,
+    SeasonsJobsModule,
   ],
   controllers: [AppController],
   providers: [Logger, TransactionInterceptor, teamService],

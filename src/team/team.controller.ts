@@ -25,7 +25,9 @@ import { teamDto } from './team.dto';
 @UseInterceptors(new LoggerInterceptor())
 @Controller('team')
 export class teamController {
-  constructor(private teamservice: teamService) {}
+  constructor(private teamservice: teamService) {
+    this.teamservice.init();
+  }
 
   @Post()
   @HttpCode(HttpStatus.OK)
