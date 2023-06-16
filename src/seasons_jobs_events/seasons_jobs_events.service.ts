@@ -1,19 +1,19 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { ConfigService } from '@nestjs/config';
-import { jobDto } from './seasons_jobs.dto';
-import { jobModel } from 'src/db/models/job';
+import { eventDto } from './event.dto';
+import { eventModel } from 'src/db/models/event';
 
 @Injectable()
-export class seasonsJobsService {
+export class seasonsJobsEventsService {
   configService: any;
 
   constructor(private config: ConfigService) {}
 
-  async create(job: jobDto): Promise<any> {
+  async create(event: eventDto): Promise<any> {
     try {
-      const { hrDetails, assigneeId, eligibilityIds, seasonId, companyId } = job;
-      const newjob = await jobModel.create({ hrDetails, assigneeId, eligibilityIds, seasonId, companyId });
+      const { jobId, venue, startTime, endTime, title, metaData } = event;
+      const newjob = await eventModel.create({ jobId, venue, startTime, endTime, title, metaData });
       return {
         status: 200,
         data: newjob,
@@ -23,12 +23,12 @@ export class seasonsJobsService {
     }
   }
 
-  async get(seasonId: string): Promise<any> {
+  async get(jobId: string): Promise<any> {
     try {
-      const jobs = await jobModel.findAll({
-        where: { seasonId },
+      const events = await eventModel.findAll({
+        where: { jobId },
       });
-      return { data: jobs, status: 200 };
+      return { data: events, status: 200 };
     } catch (error) {
       return { status: 400, error: error };
     }
@@ -36,7 +36,7 @@ export class seasonsJobsService {
 
   async delete(id: string): Promise<any> {
     try {
-      const del_rows = await jobModel.destroy({
+      const del_rows = await eventModel.destroy({
         where: {
           id,
         },
@@ -47,9 +47,9 @@ export class seasonsJobsService {
     }
   }
 
-  async update(id: typeof randomUUID, job: jobDto): Promise<any> {
+  async update(id: typeof randomUUID, event: eventDto): Promise<any> {
     try {
-      const [rowsUpdated, [updatedEntity]] = await jobModel.update(job, {
+      const [rowsUpdated, [updatedEntity]] = await eventModel.update(event, {
         where: {
           id,
         },

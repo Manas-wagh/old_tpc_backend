@@ -18,8 +18,7 @@ export class eventModel extends Model {
   @ForeignKey(() => jobModel)
   @Column(sequelize.UUID)
   jobId: string;
-
-  @BelongsTo(() => jobModel, 'id')
+  @BelongsTo(() => jobModel, 'jobId')
   job: jobModel;
 
   @Column
@@ -29,11 +28,9 @@ export class eventModel extends Model {
   venue: string;
 
   @Column
-  @CreatedAt
   startTime: Date;
 
   @Column
-  @UpdatedAt
   endTime: Date;
 
   @Column

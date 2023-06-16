@@ -11,18 +11,22 @@ import { sequelizeInstance } from 'src/db/database.providers';
 @Injectable()
 export class teamService {
   configService: any;
-
+  companyId: typeof randomUUID;
+  companyName = 'TPC';
   constructor(private config: ConfigService) {}
 
+  async init() {
+    const results = await companyModel.findAll({ where: { name: this.companyName } });
+    this.companyId = results[0].id;
+  }
+
   async create(member: teamDto): Promise<any> {
-    const name = 'TPC';
     const { email, role } = member;
     let transaction;
     try {
       transaction = await sequelizeInstance.transaction();
-      const company = await companyModel.findAll({ where: { name } });
       const [contactValues, authValues] = await Promise.all([
-        contactModel.create({ email, role, companyId: company[0].id }),
+        contactModel.create({ email, role, companyId: this.companyId }),
         authModel.create({ email, role: 'MEMBER' }),
       ]);
       await transaction.commit();
@@ -36,10 +40,8 @@ export class teamService {
   }
 
   async get(): Promise<any> {
-    const name = 'TPC';
     try {
-      const company = await companyModel.findAll({ where: { name } });
-      const values = await contactModel.findAll({ where: { companyId: company[0].id } });
+      const values = await contactModel.findAll({ where: { companyId: this.companyId } });
       return { data: values, status: 200 };
     } catch (error) {
       return { data: null, status: 400 };

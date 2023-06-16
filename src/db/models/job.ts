@@ -1,16 +1,6 @@
 import { randomUUID } from 'crypto';
 import sequelize from 'sequelize';
-import {
-  BelongsTo,
-  Column,
-  CreatedAt,
-  DataType,
-  ForeignKey,
-  Model,
-  Table,
-  Unique,
-  UpdatedAt,
-} from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { seasonModel } from './season';
 import { companyModel } from './company';
 import { contactModel } from './contact';
@@ -32,16 +22,14 @@ export class jobModel extends Model {
   @ForeignKey(() => seasonModel)
   @Column(sequelize.UUID)
   seasonId: string;
-
-  @BelongsTo(() => seasonModel, 'id')
+  @BelongsTo(() => seasonModel, 'seasonId')
   season: seasonModel;
 
   //
   @ForeignKey(() => companyModel)
   @Column(sequelize.UUID)
   companyId: string;
-
-  @BelongsTo(() => companyModel, 'id')
+  @BelongsTo(() => companyModel, 'companyId')
   company: companyModel;
 
   //
@@ -49,8 +37,7 @@ export class jobModel extends Model {
   @ForeignKey(() => contactModel)
   @Column(sequelize.UUID)
   hrDetails: string;
-
-  @BelongsTo(() => contactModel, 'id')
+  @BelongsTo(() => contactModel, 'hrDetails')
   contact1: contactModel;
 
   //
@@ -59,8 +46,7 @@ export class jobModel extends Model {
   @ForeignKey(() => contactModel)
   @Column(sequelize.UUID)
   assigneeId: string;
-
-  @BelongsTo(() => contactModel, 'id')
+  @BelongsTo(() => contactModel, 'assigneeId')
   contact2: contactModel;
 
   //

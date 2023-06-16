@@ -50,6 +50,9 @@ export const databaseProviders = [
           contactModel,
         ]);
       }
+      // await sequelizeInstance.sync({ force: true }).then(async () => {
+      //   await companyModel.create({ name: 'TPC' });
+      // });
       return sequelizeInstance;
     },
   },
