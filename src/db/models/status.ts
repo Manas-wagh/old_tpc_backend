@@ -19,8 +19,7 @@ export class statusModel extends Model {
   @ForeignKey(() => jobModel)
   @Column(sequelize.UUID)
   jobId: string;
-
-  @BelongsTo(() => jobModel, 'id')
+  @BelongsTo(() => jobModel, 'jobId')
   job: jobModel;
 
   @Column({

@@ -53,17 +53,19 @@ export class teamService {
     try {
       transaction = await sequelizeInstance.transaction();
       const contact = await contactModel.findAll({ where: { id } });
-      const newContact = await contactModel.update(company, {
-        where: { id },
-        returning: true,
-      });
-      const newAuth = await authModel.update(
-        { email: company.email, role: 'MEMBER' },
-        {
-          where: { email: contact[0].email },
+      const [newContact, newAuth] = await Promise.all([
+        contactModel.update(company, {
+          where: { id },
           returning: true,
-        },
-      );
+        }),
+        authModel.update(
+          { email: company.email, role: 'MEMBER' },
+          {
+            where: { email: contact[0].email },
+            returning: true,
+          },
+        ),
+      ]);
       await transaction.commit();
       return { data: newContact, status: 200 };
     } catch (error) {
@@ -79,12 +81,14 @@ export class teamService {
     try {
       transaction = await sequelizeInstance.transaction();
       const contact = await contactModel.findAll({ where: { id } });
-      const delContact = await contactModel.destroy({
-        where: { id },
-      });
-      const delAuth = await authModel.destroy({
-        where: { email: contact[0].email },
-      });
+      const [delContact, delAuth] = await Promise.all([
+        contactModel.destroy({
+          where: { id },
+        }),
+        authModel.destroy({
+          where: { email: contact[0].email },
+        }),
+      ]);
       return { data: delContact, status: 200 };
     } catch (error) {
       if (transaction) {

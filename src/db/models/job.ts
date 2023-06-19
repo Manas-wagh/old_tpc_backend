@@ -1,16 +1,6 @@
 import { randomUUID } from 'crypto';
 import sequelize from 'sequelize';
-import {
-  BelongsTo,
-  Column,
-  CreatedAt,
-  DataType,
-  ForeignKey,
-  Model,
-  Table,
-  Unique,
-  UpdatedAt,
-} from 'sequelize-typescript';
+import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { seasonModel } from './season';
 import { companyModel } from './company';
 import { contactModel } from './contact';

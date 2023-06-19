@@ -1,17 +1,5 @@
 import { seasonsService } from './seasons.service';
-import {
-  Body,
-  Controller,
-  HttpCode,
-  HttpStatus,
-  Post,
-  Get,
-  Delete,
-  ForbiddenException,
-  UnauthorizedException,
-  Param,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Get, Delete, Param, UseInterceptors } from '@nestjs/common';
 import { LoggerInterceptor } from 'src/interceptor/LoggerInterceptor';
 import { TransactionInterceptor } from 'src/interceptor/TransactionInterceptor';
 import { randomUUID } from 'crypto';

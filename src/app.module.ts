@@ -10,9 +10,9 @@ import { companiesModule } from './companies/companies.module';
 import { companiesContactsModule } from './companies_contacts/companies_contacts.module';
 import { teamModule } from './team/team.module';
 import { SeasonsJobsModule } from './seasons_jobs/seasons_jobs.module';
-// import { SeasonsJobsEventsModule } from './seasons_jobs_events/seasons_jobs_events.module';
+import { SeasonsJobsEventsModule } from './seasons_jobs_events/seasons_jobs_events.module';
 // import { SeasonsJobsAssignModule } from './seasons_jobs_assign/seasons_jobs_assign.module';
-// import { SeasonsJobsStatusModule } from './seasons_jobs_status/seasons_jobs_status.module';
+import { SeasonsJobsStatusModule } from './seasons_jobs_status/seasons_jobs_status.module';
 // import { SeasonsStudentsModule } from './seasons_students/seasons_students.module';
 // import { SeasonsStudentsOffersModule } from './seasons_students_offers/seasons_students_offers.module';
 import { seasonsModule } from './seasons/seasons.module';
@@ -27,6 +27,8 @@ import { teamService } from './team/team.service';
     companiesContactsModule,
     teamModule,
     SeasonsJobsModule,
+    SeasonsJobsEventsModule,
+    SeasonsJobsStatusModule,
   ],
   controllers: [AppController],
   providers: [Logger, TransactionInterceptor, teamService],
