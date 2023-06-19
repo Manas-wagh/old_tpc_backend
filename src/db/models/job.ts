@@ -44,7 +44,10 @@ export class jobModel extends Model {
 
   //
   @ForeignKey(() => contactModel)
-  @Column(sequelize.UUID)
+  @Column({
+    allowNull: true,
+    type: sequelize.UUID,
+  })
   assigneeId: string;
   @BelongsTo(() => contactModel, 'assigneeId')
   contact2: contactModel;

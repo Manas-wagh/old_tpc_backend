@@ -18,6 +18,7 @@ export class jobDto {
 
   @IsNotEmpty()
   @IsString()
+  @IsOptional()
   public assigneeId: string;
 
   @IsArray()
