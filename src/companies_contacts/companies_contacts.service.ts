@@ -8,7 +8,7 @@ import { contactModel } from 'src/db/models/contact';
 export class companiesContactsService {
   configService: any;
 
-  constructor(private config: ConfigService) { }
+  constructor(private config: ConfigService) {}
 
   async create(companyId: typeof randomUUID, companyContact: companiesContactDto): Promise<any> {
     let flag = false;
